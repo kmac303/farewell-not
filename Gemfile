@@ -25,6 +25,15 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Web scraper gem
+gem 'kimurai'
+
+# Selenium web driver for web scraper
+gem 'selenium-webdriver'
+
+# Alternate webdrvier for web scraper
+gem 'poltergeist'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -39,13 +48,23 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-group :development, :test do
-  gem 'rspec-rails', '~> 5.0.0'
-end
+group :development, :test do;end
 
 group :test do
   gem 'rspec-json_expectations'
   gem 'shoulda-matchers', '~> 4.0'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 gem "active_model_serializers", "~> 0.10.12"
+
+group :development, :test do
+  gem 'faker'
+end
+
+group :development, :test do
+  gem 'factory_bot_rails'
+end
