@@ -45,7 +45,7 @@ class DeathSpider < Kimurai::Base
         item = {}
 
         # Extract relevant data
-        item[:image_url] = obit_container.at_xpath(".//img[@class='preview-obit-image']/@src").to_s.strip
+        # item[:image_url] = obit_container.at_xpath(".//img[@class='preview-obit-image']/@src").to_s.strip
         item[:name] = obit_container.at_xpath(".//h3[@class='screen-title-title']").text.strip
         item[:date] = obit_container.at_xpath(".//p[contains(@class, 'screen-title-date')]/span").text.strip
         item[:link] = obit_container.at_xpath(".//a[@class='DM-link obit-result-link']/@href").to_s.strip
@@ -115,7 +115,8 @@ end
           user_id: user.id, 
           date_of_passing: death_date_from_string,
           obituary_url: "#{BASE_URL}#{scraped_item[:link]}",
-          summary: scraped_item[:description])
+          summary: scraped_item[:description],
+          matched_on: Date.today)
       end
     end
   end
