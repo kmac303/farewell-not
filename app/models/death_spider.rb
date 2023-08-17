@@ -48,8 +48,9 @@ class DeathSpider < Kimurai::Base
         item[:image_url] = obit_container.at_xpath(".//img[@class='preview-obit-image']/@src").to_s.strip
         item[:name] = obit_container.at_xpath(".//h3[@class='screen-title-title']").text.strip
         item[:date] = obit_container.at_xpath(".//p[contains(@class, 'screen-title-date')]/span").text.strip
-        item[:link] = obit_container.at_xpath(".//a[@class='DM-link obit-result-link']")['href']
+        item[:link] = obit_container.at_xpath(".//a[@class='DM-link obit-result-link']/@href").to_s.strip
         item[:description] = obit_container.at_xpath(".//div[contains(@class, 'obit-result-text')]/p").text.strip
+        # item[:obituary_url] = obit_container.at_xpath(".//a[@class='DM-link obit-result-link']/@href").to_s.strip
 
         @@items << item
     end
@@ -67,53 +68,73 @@ end
   #   items.map { |item| item[:name] }
   # end
 
-  def self.get_names
-    # items = self.process
-    # names = []
-    # items.each do |item|
-    #   puts "Item class: #{item.class}"
-    #   names << item[:name]
-    # end
-    # names
-    # puts "Items directly from process: #{self.process.inspect}"
+  def self.get_names_and_dates
     items = self.items
-    items.map { |item| item[:name] }
+    items.map { |item| { name: item[:name], date: item[:date], link: item[:link], description: item[:description] } }
   end
 
 #   def self.compare_and_save_matches
 #     scraped_names = DeathSpider.get_names
-  
+
 #     scraped_names.each do |scraped_name|
-#       # Split the scraped_name into first and last names.
-#       # Assuming the format is always "First Last".
-#       first_name, last_name = scraped_name.split(' ', 2)
-  
-#       # Find the user by first and last name.
+#       name_parts = scraped_name.split
+#       first_name = name_parts.first
+#       last_name = name_parts.last
+
 #       user = User.find_by(first_name: first_name, last_name: last_name)
-  
-#       # If the user exists and a match doesn't exist yet, create the match.
 #       if user && !Match.exists?(user_id: user.id)
-#         Match.create(user_id: user.id, matched_name: scraped_name)
+#         Match.create(user_id: user.id)
 #       end
 #     end
 #   end
 # end
 
-  def self.compare_and_save_matches
-    scraped_names = DeathSpider.get_names
+  BASE_URL = "https://www.dignitymemorial.com"
 
-    scraped_names.each do |scraped_name|
-      name_parts = scraped_name.split
+  def self.compare_and_save_matches
+    scraped_data = DeathSpider.get_names_and_dates
+
+    scraped_data.each do |scraped_item|
+      name_parts = scraped_item[:name].split
+      puts "Scraped Link: #{scraped_item[:link]}"
       first_name = name_parts.first
       last_name = name_parts.last
 
-      user = User.find_by(first_name: first_name, last_name: last_name)
+      # Extract and parse the birth date from the scraped data
+      date_parts = scraped_item[:date].split("–")
+      birth_date_from_string = Date.strptime(date_parts.first.strip, '%m/%d/%Y')
+      death_date_from_string = Date.strptime(date_parts.last.strip, '%m/%d/%Y')
+
+      # Find the user by first name, last name, and date of birth
+      user = User.find_by(first_name: first_name, last_name: last_name, date_of_birth: birth_date_from_string)
+
+      # puts "Complete URL: #{BASE_URL}#{scraped_item[:link]}"
+
       if user && !Match.exists?(user_id: user.id)
-        Match.create(user_id: user.id, first_name: first_name, last_name: last_name)
+        Match.create(
+          user_id: user.id, 
+          date_of_passing: death_date_from_string,
+          obituary_url: "#{BASE_URL}#{scraped_item[:link]}",
+          summary: scraped_item[:description])
       end
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###OLD CODE#####
 
 # scraped_names = DeathSpider.get_names
 
