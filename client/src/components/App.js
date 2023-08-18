@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route} from "react-router-dom";
-import Login from './Login';
+import Login from "./Login";
 import NavBar from "./NavBar";
 import Header from "./Header";
 import Home from "./Home";
 import SignUp from "./SignUp";
-import Restaurant from "./Restaurant";
-import RestaurantContainer from "./RestaurantContainer";
-import NewReviewForm from "./NewReviewForm";
-import EditReview from "./EditReview";
-import NewRestaurantForm from "./NewRestaurantForm";
+// import Restaurant from "./Restaurant";
+// import RestaurantContainer from "./RestaurantContainer";
+// import NewReviewForm from "./NewReviewForm";
+// import EditReview from "./EditReview";
+// import NewRestaurantForm from "./NewRestaurantForm";
 import { UserProvider } from "../context/UserContext";
 
 function App() {
-  const [restaurants, setRestaurants] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch(`/restaurants`)
+    fetch(`/users`)
       .then((r) => r.json())
-      .then((restaurants) => setRestaurants(restaurants)); 
+      .then((users) => setUsers(users)); 
   }, []); 
 
   return (
@@ -31,13 +31,13 @@ function App() {
           <Route exact path="/signup">
             <SignUp/>
           </Route>
-          <Route exact path="/login">
+          {/* <Route exact path="/login">
             <Login />
-          </Route>
+          </Route> */}
           <Route exact path="/">
             <Home/>
           </Route>
-          <Route exact path="/restaurants">
+          {/* <Route exact path="/restaurants">
             <RestaurantContainer restaurants={restaurants}/>
           </Route>
           <Route exact path="/restaurants/new">
@@ -51,7 +51,7 @@ function App() {
           </Route>
           <Route path="/reviews/:id/edit">
             <EditReview restaurants={restaurants} setRestaurants={setRestaurants}/>
-          </Route>
+          </Route> */}
         </Switch>
         </main>
        </UserProvider>

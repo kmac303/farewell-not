@@ -13,7 +13,7 @@ function Home() {
     )} else {
       return (
       <>
-        <h1>Welcome to RestaurantReviews.com</h1>
+        <h1>Welcome to Farwell Not</h1>
         <h5>Please Login or Create an Account to Leave a Review</h5>
       </>
     )}
