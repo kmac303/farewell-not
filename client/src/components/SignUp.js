@@ -1,12 +1,15 @@
 import React, { useState, useContext} from "react";
 import { UserContext } from "../context/UserContext";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function SignUp() {
   const {setUser} = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
   const history = useHistory();
 
   function submissionError() {
@@ -23,9 +26,14 @@ function SignUp() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
-        password,
-        password_confirmation: passwordConfirmation,
+        "user": {
+          username,
+          password,
+          password_confirmation: passwordConfirmation,
+          first_name: firstName,
+          last_name: lastName,
+          date_of_birth: dateOfBirth
+        }
       }),
     }).then((r) => {
       if (r.ok) {
@@ -67,6 +75,30 @@ function SignUp() {
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           autoComplete="current-password"
+        />
+        <label htmlFor="first_name">First Name</label>
+        <input
+          type="text"
+          id="first_name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          // autoComplete="current-password"
+        />
+        <label htmlFor="last_name">Last Name</label>
+        <input
+          type="text"
+          id="last_name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        //   autoComplete="current-password"
+        />
+        <label htmlFor="date_of_birth">Date of Birth</label>
+        <input
+          type="date"
+          id="date_of_birth"
+          value={dateOfBirth}
+          onChange={(e) => setDateOfBirth(e.target.value)}
+        //   autoComplete="current-password"
         />
         <button type="submit">Sign Up</button>
       </form>

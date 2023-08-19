@@ -11,15 +11,17 @@ import SignUp from "./SignUp";
 // import EditReview from "./EditReview";
 // import NewRestaurantForm from "./NewRestaurantForm";
 import { UserProvider } from "../context/UserContext";
+import UserMessages from "./UserMessages";
+import NewMessageForm from "./NewMessageForm";
 
 function App() {
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch(`/users`)
-      .then((r) => r.json())
-      .then((users) => setUsers(users)); 
-  }, []); 
+  // useEffect(() => {
+  //   fetch(`/users`)
+  //     .then((r) => r.json())
+  //     .then((users) => setUsers(users)); 
+  // }, []); 
 
   return (
     <div className="App">
@@ -31,15 +33,23 @@ function App() {
           <Route exact path="/signup">
             <SignUp/>
           </Route>
-          {/* <Route exact path="/login">
+          <Route exact path="/login">
             <Login />
-          </Route> */}
+          </Route>
           <Route exact path="/">
             <Home/>
           </Route>
-          {/* <Route exact path="/restaurants">
-            <RestaurantContainer restaurants={restaurants}/>
+          <Route exact path="/messages">
+            <UserMessages 
+            // restaurants={restaurants}
+            />
           </Route>
+          <Route exact path="/messages/new">
+            <NewMessageForm 
+            // restaurants={restaurants} setRestaurants={setRestaurants}
+            />
+          </Route>
+          {/* 
           <Route exact path="/restaurants/new">
             <NewRestaurantForm restaurants={restaurants} setRestaurants={setRestaurants}/>
           </Route>

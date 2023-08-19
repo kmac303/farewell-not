@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import { UserContext } from "../context/UserContext";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 function Home() {
   const {user} = useContext(UserContext);
@@ -8,13 +9,13 @@ function Home() {
       return (
     <div>
       <h1>Welcome, {user.username}!</h1>
-      <h2>Want to leave a review? Click Restaurants first!</h2>
+      <Link to="/messages">View Your Messages</Link>
     </div>
     )} else {
       return (
       <>
-        <h1>Welcome to Farwell Not</h1>
-        <h5>Please Login or Create an Account to Leave a Review</h5>
+        <h2>Say Goodbye, Not Goodbye Forever</h2>
+        <h4>Please Login or Create an Account</h4>
       </>
     )}
   }

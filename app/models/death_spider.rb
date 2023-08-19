@@ -8,35 +8,6 @@ class DeathSpider < Kimurai::Base
     self.crawl!
   end
 
-  # def parse(response, url:, data: {})
-  #   items = []
-
-  #    # Loop through each obituary result container
-  #    response.xpath("//div[@id='obituariesResults']/div[contains(@class, 'obit-result-container')]").each do |obit_container|
-  #       item = {}
-
-  #       # Extract relevant data
-  #       item[:image_url] = obit_container.at_xpath(".//img[@class='preview-obit-image']/@src").to_s.strip
-  #       item[:name] = obit_container.at_xpath(".//h3[@class='screen-title-title']").text.strip
-  #       item[:date] = obit_container.at_xpath(".//p[contains(@class, 'screen-title-date')]/span").text.strip
-  #       item[:link] = obit_container.at_xpath(".//a[@class='DM-link obit-result-link']")['href']
-  #       item[:description] = obit_container.at_xpath(".//div[contains(@class, 'obit-result-text')]/p").text.strip
-  
-  #       items << item
-  #     end
-  
-  #     # Save items to results.json
-  #     items.each do |item|
-  #       # puts item.inspect
-  #       # puts "Saving: #{item[:name]}"
-  #       file_path = Rails.root.join('results.json')
-  #       save_to file_path.to_s, item, format: :pretty_json
-  #     end
-
-  #     puts items.inspect
-  #     items
-  # end
-
   def parse(response, url:, data: {})
     @@items = []
 
@@ -61,33 +32,11 @@ def self.items
   @@items || []
 end
 
-  # def self.get_names
-  #   # This is a simplified method that returns all the scraped names
-  #   items = self.process
-  #   # Assuming your spider is set up to scrape names into the `items` array
-  #   items.map { |item| item[:name] }
-  # end
 
   def self.get_names_and_dates
     items = self.items
     items.map { |item| { name: item[:name], date: item[:date], link: item[:link], description: item[:description] } }
   end
-
-#   def self.compare_and_save_matches
-#     scraped_names = DeathSpider.get_names
-
-#     scraped_names.each do |scraped_name|
-#       name_parts = scraped_name.split
-#       first_name = name_parts.first
-#       last_name = name_parts.last
-
-#       user = User.find_by(first_name: first_name, last_name: last_name)
-#       if user && !Match.exists?(user_id: user.id)
-#         Match.create(user_id: user.id)
-#       end
-#     end
-#   end
-# end
 
   BASE_URL = "https://www.dignitymemorial.com"
 

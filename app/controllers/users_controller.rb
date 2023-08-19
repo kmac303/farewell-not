@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_action :authorize, only: [:user_longer_than]
+  # skip_before_action :authorize, only: [:create, :show]
 
   # GET /users
   def index
@@ -9,12 +9,17 @@ class UsersController < ApplicationController
   end
 
   def show
-      user = User.find_by(id: session[:user_id])
-      if user
-          render json: user
-      else
-          render json: {error: "Not authorized"}, status: :unathorized
-      end
+    user = User.find_by(id: session[:user_id])
+    if user
+      render json: { 
+        id: user.id,
+        username: user.username,
+        # ... any other user properties ...
+        messages: user.messages || []  # ensure messages is always an array
+      }
+    else
+      render json: {error: "Not authorized"}, status: :unauthorized
+    end
   end
 
   def create
@@ -26,15 +31,8 @@ class UsersController < ApplicationController
       end
   end
 
-  # Make a custom method in the user model that takes a number as an argument and gets all the users that have usernames longer than that. (In terms of characters).
-  # def user_longer_than
-  #     render json: User.user_longer_than(params[:n].to_i)
-  # end
-
-
   private
 
-    # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :password, :password_confirmation, :first_name, :last_name, :date_of_birth)
     end

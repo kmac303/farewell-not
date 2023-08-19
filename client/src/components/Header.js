@@ -4,7 +4,7 @@ function Header() {
 
   return (
     <header>
-        <h1>RestaurantReviews.com</h1>
+        <h1>Farewell Not</h1>
     </header>
   );
 }
