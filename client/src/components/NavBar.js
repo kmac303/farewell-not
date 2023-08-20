@@ -17,7 +17,11 @@ function NavBar() {
       <div>
         <NavLink to="/">Home</NavLink>
         <br/>
+        {user ? (
         <NavLink to="/messages">Messages</NavLink>
+        ) : (
+          <></>
+        )}
       </div>
       <div>
         {user ? (

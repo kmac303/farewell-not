@@ -4,7 +4,6 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   background-image: url("https://images.pexels.com/photos/531972/pexels-photo-531972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-  /* backdrop-filter: blur(10px); */
   background-size: cover;   
   background-position: center;
   background-repeat: no-repeat;
@@ -89,6 +88,6 @@ h1, h2, h3, h4, h5, p, a, label {
   right: 0;
   bottom: 0;
   backdrop-filter: blur(5px);
-  pointer-events: none; /* This ensures that interactions with other elements on the page are not blocked */
-  z-index: -1; /* This ensures that the overlay is behind other content on the page */
+  pointer-events: none; 
+  z-index: -1; 
 }

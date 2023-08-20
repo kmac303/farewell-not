@@ -1,6 +1,6 @@
 # Farewell Not
 
-Farewell Not was designed to allow users to send loved ones messages in the unfortunate event of their loss.
+Farewell Not was designed to allow users to send loved ones messages in the unfortunate event of their loss. This application will search online obituaries and based on a users name and birthday, will check if they are deceased. If so, a message they have created will send out to its respective recipients.
 
 ## Requirements
 
@@ -22,17 +22,15 @@ Once set up, run these commands in separate terminal windows to run the applicat
 
 ## Usage
 
-Begin by creating a User account
-
-Navigate through the application by viewing different restaurants in the database or search by restaurant info, and view their respective reviews by clicking on an individual restaurant. At the top of each individual restaurant page is an aggregate review, factoring in all reviews for that restaurant and assigning it an average star rating.
+Begin by creating a User account through the Signup link. Once all your information is entered, you can create Messages to send to your loved ones. You can create multiple messages, with multiple recipients for each.
 
 ## Contributing
 
-Signup for an account or Login to be able to contribute to the application. If you'd like to leave a review or add a restaurant, you can add your own by clicking on "Leave a Review" or "Add New Restaurant". If you want to edit or delete a review you left, you can do so by clicking the "Edit Your Review" or "Delete Your Review" buttons underneath that individual review.
+Signup for an account or Login to be able to contribute to this application. 
 
 ## License
 
-Created by Kevin McIntosh for the Flatiron School Software Engineer Flex Program Phase 4 Project.
+Created by Kevin McIntosh for the Flatiron School Software Engineer Flex Program Phase 5 Project.
 
 ## Creation
 
@@ -40,8 +38,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Content
 
-Default images used for the source files of this application are from:
-- The Exchange District Biz
-- TripAdvisor
-- NJ.com
-- Unsplash
+Default background image for this application sourced from:
+- imgix
