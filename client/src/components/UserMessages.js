@@ -8,7 +8,7 @@ function UserMessages() {
 
   useEffect(() => {
     if (user) {
-      fetch("/messages") // Assuming this is your endpoint that fetches the user's messages
+      fetch("/messages")
         .then((response) => response.json())
         .then(setMessages);
     }
@@ -18,12 +18,15 @@ function UserMessages() {
     <div>
       <h1>Your Messages</h1>
 
-      {/* Link to New Message Form */}
       <Link to="/messages/new">Create a New Message</Link>
 
       <ul>
         {messages.map((message) => (
-          <li key={message.id}>{message.subject}</li> // Adjust based on your message structure
+          <li key={message.id}>
+            <Link to={`/messages/${message.id}`}>
+              {message.subject}
+            </Link>
+          </li> 
         ))}
       </ul>
     </div>

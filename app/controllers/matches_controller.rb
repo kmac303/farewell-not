@@ -3,15 +3,16 @@ class MatchesController < ApplicationController
 
   # GET /matches
   def index
-    @matches = Match.all
-
+    # Return matches for all users with their associated messages and recipients
+    @matches = Match.includes(user: { messages: :recipients }).all
     render json: @matches
   end
 
   # GET /matches/1
   def show
+    @match = Match.includes(user: { messages: :recipients }).find(params[:id])
     render json: @match
-  end
+end
 
   # Match.create(user_id: user.id, matched_name: scraped_name)
 

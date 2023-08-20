@@ -14,7 +14,6 @@ function Home() {
     )} else {
       return (
       <>
-        <h2>Say Goodbye, Not Goodbye Forever</h2>
         <h4>Please Login or Create an Account</h4>
       </>
     )}

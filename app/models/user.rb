@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :messages
-    has_many :recipients, through: :messages
+    # has_many :recipients, through: :messages
     has_one :match
     # validates :password, presence: true
     # validates :username, presence: true

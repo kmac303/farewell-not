@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { UserContext } from "../context/UserContext"; // Adjust the path if needed
 
 function NewMessageForm() {
@@ -7,6 +8,7 @@ function NewMessageForm() {
         body: '',
       });    
     const [recipients, setRecipients] = useState([{ name: "", email: "" }]);
+    const history = useHistory();
     const { user, setUser } = useContext(UserContext);
 
     function handleNameChange(event, idx) {
@@ -56,15 +58,14 @@ function NewMessageForm() {
                 ...currentUser,
                 messages: [...currentUser.messages, data]  // Adjust if your data structure is different
             }));
+            history.push('/messages')
         
-            // You can reset the form or navigate the user somewhere else here.
         })
         .catch((error) => {
             console.error("Error saving message:", error);
         });
     }
     
-
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -87,13 +88,15 @@ function NewMessageForm() {
             </div>
             {recipients.map((recipient, idx) => (
                 <div key={idx}>
+                    <label>Recipient Name:</label>
                     <input 
-                        placeholder="Recipient Name" 
+                        placeholder="John Doe" 
                         value={recipient.name} 
                         onChange={(e) => handleNameChange(e, idx)} 
                     />
+                    <label>Recipient Email:</label>
                     <input 
-                        placeholder="Recipient Email" 
+                        placeholder="johndoe@gmail.com" 
                         value={recipient.email} 
                         onChange={(e) => handleEmailChange(e, idx)} 
                     />

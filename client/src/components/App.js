@@ -5,14 +5,12 @@ import NavBar from "./NavBar";
 import Header from "./Header";
 import Home from "./Home";
 import SignUp from "./SignUp";
-// import Restaurant from "./Restaurant";
-// import RestaurantContainer from "./RestaurantContainer";
-// import NewReviewForm from "./NewReviewForm";
-// import EditReview from "./EditReview";
-// import NewRestaurantForm from "./NewRestaurantForm";
 import { UserProvider } from "../context/UserContext";
 import UserMessages from "./UserMessages";
 import NewMessageForm from "./NewMessageForm";
+import Message from "./Message";
+import ScraperPage from "./ScraperPage";
+// import './index.css';
 
 function App() {
   // const [users, setUsers] = useState([]);
@@ -25,6 +23,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* <div className="blur-overlay"></div> */}
       <UserProvider>
       <NavBar />
       <Header />
@@ -40,28 +39,17 @@ function App() {
             <Home/>
           </Route>
           <Route exact path="/messages">
-            <UserMessages 
-            // restaurants={restaurants}
-            />
+            <UserMessages/>
           </Route>
           <Route exact path="/messages/new">
-            <NewMessageForm 
-            // restaurants={restaurants} setRestaurants={setRestaurants}
-            />
+            <NewMessageForm/>
           </Route>
-          {/* 
-          <Route exact path="/restaurants/new">
-            <NewRestaurantForm restaurants={restaurants} setRestaurants={setRestaurants}/>
+          <Route exact path="/messages/:id">
+            <Message/>
           </Route>
-          <Route exact path="/restaurants/:id">
-            <Restaurant/>
+          <Route exact path="/scraper">
+            <ScraperPage/>
           </Route>
-          <Route exact path="/restaurants/:id/review">
-            <NewReviewForm restaurants={restaurants} setRestaurants={setRestaurants}/>
-          </Route>
-          <Route path="/reviews/:id/edit">
-            <EditReview restaurants={restaurants} setRestaurants={setRestaurants}/>
-          </Route> */}
         </Switch>
         </main>
        </UserProvider>
