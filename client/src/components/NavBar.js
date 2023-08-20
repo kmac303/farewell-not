@@ -17,7 +17,7 @@ function NavBar() {
       <div>
         <NavLink to="/">Home</NavLink>
         <br/>
-        {/* <NavLink to="/restaurants">Restaurants</NavLink> */}
+        <NavLink to="/messages">Messages</NavLink>
       </div>
       <div>
         {user ? (

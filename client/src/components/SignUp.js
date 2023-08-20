@@ -82,7 +82,6 @@ function SignUp() {
           id="first_name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          // autoComplete="current-password"
         />
         <label htmlFor="last_name">Last Name</label>
         <input
@@ -90,7 +89,6 @@ function SignUp() {
           id="last_name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-        //   autoComplete="current-password"
         />
         <label htmlFor="date_of_birth">Date of Birth</label>
         <input
@@ -98,7 +96,6 @@ function SignUp() {
           id="date_of_birth"
           value={dateOfBirth}
           onChange={(e) => setDateOfBirth(e.target.value)}
-        //   autoComplete="current-password"
         />
         <button type="submit">Sign Up</button>
       </form>

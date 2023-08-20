@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom";
 
-function Message({ match }) { // match prop comes from react-router and contains the route parameters
+function Message({ match }) { 
   const { id } = useParams();
-  const history = useHistory();
+//   const history = useHistory();
   const [messageDetails, setMessageDetails] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
@@ -62,8 +62,8 @@ const handleSubmit = (event) => {
       })
         .then(response => response.json())
         .then(data => {
-          setMessageDetails(data); // Update the message details with the new data
-          setIsEditing(false); // Exit the editing mode
+          setMessageDetails(data);
+          setIsEditing(false);
         })
         .catch(error => console.error(error));
 };  

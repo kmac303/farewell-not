@@ -17,7 +17,6 @@ function ScraperPage() {
     })
     .then(response => response.json())
     .then(data => {
-      // console.log(data);
       setMatches(data);
       setLoading(false);
     })

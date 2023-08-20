@@ -9,7 +9,7 @@ function NewMessageForm() {
       });    
     const [recipients, setRecipients] = useState([{ name: "", email: "" }]);
     const history = useHistory();
-    const { user, setUser } = useContext(UserContext);
+    const {setUser } = useContext(UserContext);
 
     function handleNameChange(event, idx) {
         const updatedRecipients = [...recipients];
