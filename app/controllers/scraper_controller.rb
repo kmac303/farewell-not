@@ -7,9 +7,9 @@ class ScraperController < ApplicationController
         DeathSpider.compare_and_save_matches
     
         # Assuming Match has a user_id column and you want to return matches related to the current user
-        matches = Match.includes(:user).all # Adjust the limit as needed
-    
-        render json: matches
+        matches = Match.includes(user: {messages: :recipients}).all # Adjust the limit as needed
+        # byebug
+        render json: matches.to_json(include: { user: { include: { messages: { include: :recipients } } } })
     end
 
     private

@@ -10,20 +10,11 @@ import UserMessages from "./UserMessages";
 import NewMessageForm from "./NewMessageForm";
 import Message from "./Message";
 import ScraperPage from "./ScraperPage";
-// import './index.css';
 
 function App() {
-  // const [users, setUsers] = useState([]);
-
-  // useEffect(() => {
-  //   fetch(`/users`)
-  //     .then((r) => r.json())
-  //     .then((users) => setUsers(users)); 
-  // }, []); 
 
   return (
     <div className="App">
-      {/* <div className="blur-overlay"></div> */}
       <UserProvider>
       <NavBar />
       <Header />

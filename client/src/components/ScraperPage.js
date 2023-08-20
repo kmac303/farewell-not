@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from "../context/UserContext";
 
-
 function ScraperPage() {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -18,7 +17,7 @@ function ScraperPage() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
+      // console.log(data);
       setMatches(data);
       setLoading(false);
     })
@@ -50,19 +49,23 @@ function ScraperPage() {
       <p>Summary: {match.summary}</p>
   
       <h4>Messages:</h4>
-      {match.user.messages && Array.isArray(match.user.messages) ? (
+      {console.log(match)}
+      {match?.user?.messages && match.user.messages.length > 0 ? (
         <ul>
-          {match.user.messages.map(message => (
-            <li key={message.id}>
-              Subject: {message.subject}
-              <ul>
-                {message.recipients.map(recipient => (
-                  <li key={recipient.id}>
-                    {recipient.name} ({recipient.email})
-                  </li>
-                ))}
-              </ul>
-            </li>
+        {match.user.messages.map(message => (
+          <ul key={message.id}>
+            Subject: {message.subject}
+            <br />
+            Body: {message.body}
+            <ul>
+            Recipients: 
+              {message.recipients?.map(recipient => (
+                <ul key={recipient.id}>
+                  {recipient.name} ({recipient.email})
+                </ul>
+              ))}
+            </ul>
+          </ul>
           ))}
         </ul>
       ) : (
@@ -70,7 +73,6 @@ function ScraperPage() {
       )}
     </div>
   );    
-  
 
   if (user?.username === "kmac") {
     return (

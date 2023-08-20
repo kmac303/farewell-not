@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
 
   post '/start_scraper', to: 'scraper#start'
+  # get '/all_messages', to: 'messages#all_messages'
   
   resources :matches
   resources :recipients

@@ -13,9 +13,6 @@ function Message({ match }) { // match prop comes from react-router and contains
     });
 
   useEffect(() => {
-    // fetch(`/messages/${id}`)
-    //   .then((response) => response.json())
-    //   .then(setMessageDetails);
     fetch(`/messages/${id}`)
     .then((response) => {
         if (!response.ok) {
