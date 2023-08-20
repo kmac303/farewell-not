@@ -33,7 +33,6 @@ function Message({ match }) { // match prop comes from react-router and contains
     })
     .catch((error) => {
         console.error(error);
-        // Handle error as needed.
     });
 }, [id]);
 

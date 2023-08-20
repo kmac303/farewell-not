@@ -56,9 +56,9 @@ function NewMessageForm() {
             // Update the user's messages
             setUser((currentUser) => ({
                 ...currentUser,
-                messages: [...currentUser.messages, data]  // Adjust if your data structure is different
+                messages: currentUser.messages ? [...currentUser.messages, data] : [data]
             }));
-            history.push('/messages')
+            history.push('/messages')               
         
         })
         .catch((error) => {

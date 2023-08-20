@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from "../context/UserContext";
+
 
 function ScraperPage() {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const {user} = useContext(UserContext);
 
   const handleStartScraper = () => {
     setLoading(true);
@@ -70,7 +72,8 @@ function ScraperPage() {
   );    
   
 
-  return (
+  if (user?.username === "kmac") {
+    return (
     <div>
       <button onClick={handleStartScraper}>Start Web Scraper</button>
 
@@ -86,7 +89,12 @@ function ScraperPage() {
         </div>
       )}
     </div>
-  );
-}
+  );} else {
+        return (
+        <>
+          <h5>Please Login to an administrative account to view this page</h5>
+        </>
+      )}
+  }
 
 export default ScraperPage;

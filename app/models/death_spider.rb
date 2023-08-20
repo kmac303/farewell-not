@@ -21,17 +21,15 @@ class DeathSpider < Kimurai::Base
         item[:date] = obit_container.at_xpath(".//p[contains(@class, 'screen-title-date')]/span").text.strip
         item[:link] = obit_container.at_xpath(".//a[@class='DM-link obit-result-link']/@href").to_s.strip
         item[:description] = obit_container.at_xpath(".//div[contains(@class, 'obit-result-text')]/p").text.strip
-        # item[:obituary_url] = obit_container.at_xpath(".//a[@class='DM-link obit-result-link']/@href").to_s.strip
 
         @@items << item
     end
     @@items
-end
+  end
 
-def self.items
-  @@items || []
-end
-
+  def self.items
+    @@items || []
+  end
 
   def self.get_names_and_dates
     items = self.items
