@@ -17,9 +17,7 @@ function UserMessages() {
   return (
     <div>
       <h1>Your Messages</h1>
-
       <Link to="/messages/new">Create a New Message</Link>
-
       <ul>
         {messages.map((message) => (
           <li key={message.id}>

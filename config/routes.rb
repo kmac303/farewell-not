@@ -6,13 +6,12 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
 
   post '/start_scraper', to: 'scraper#start'
-  # get '/all_messages', to: 'messages#all_messages'
   
-  resources :matches
-  resources :recipients
-  resources :messages
-  resources :users
-  # Routing logic: fallback requests for React Router.
+  resources :matches, only: [:index, :show, :create, :update, :destroy]
+  resources :recipients, only: [:index, :show, :create, :update]
+  resources :messages, only: [:index, :show, :create, :update]
+  resources :users, only: [:show, :create]
+
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

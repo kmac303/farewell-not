@@ -73,7 +73,7 @@ function ScraperPage() {
     </div>
   );    
 
-  if (user?.username === "kmac") {
+  if (user?.username === "admin") {
     return (
     <div>
       <button onClick={handleStartScraper}>Start Web Scraper</button>

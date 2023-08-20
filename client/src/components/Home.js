@@ -5,7 +5,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 function Home() {
   const {user} = useContext(UserContext);
 
-  if (user?.username === "kmac") {
+  if (user?.username === "admin") {
     return (
       <div>
         <h1>Welcome, {user.username}!</h1>

@@ -14,9 +14,7 @@ class DeathSpider < Kimurai::Base
     # Loop through each obituary result container
     response.xpath("//div[@id='obituariesResults']/div[contains(@class, 'obit-result-container')]").each do |obit_container|
         item = {}
-
         # Extract relevant data
-        # item[:image_url] = obit_container.at_xpath(".//img[@class='preview-obit-image']/@src").to_s.strip
         item[:name] = obit_container.at_xpath(".//h3[@class='screen-title-title']").text.strip
         item[:date] = obit_container.at_xpath(".//p[contains(@class, 'screen-title-date')]/span").text.strip
         item[:link] = obit_container.at_xpath(".//a[@class='DM-link obit-result-link']/@href").to_s.strip
@@ -54,8 +52,6 @@ class DeathSpider < Kimurai::Base
 
       # Find the user by first name, last name, and date of birth
       user = User.find_by(first_name: first_name, last_name: last_name, date_of_birth: birth_date_from_string)
-
-      # puts "Complete URL: #{BASE_URL}#{scraped_item[:link]}"
 
       if user && !Match.exists?(user_id: user.id)
         Match.create(

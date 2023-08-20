@@ -14,7 +14,7 @@ function SignUp() {
 
   function submissionError() {
     return (
-            window.confirm("Please make sure all sections are filled and your passwords match! If all sections are filled, that username may already exist!")
+      window.confirm("Please make sure all sections are filled and your passwords match! If all sections are filled, that username may already exist!")
     );
   }
 

@@ -1,19 +1,15 @@
 class RecipientsController < ApplicationController
-  before_action :set_recipient, only: [:show, :update, :destroy]
+  before_action :set_recipient, only: [:show, :update]
 
-  # GET /recipients
   def index
     @recipients = Recipient.all
-
     render json: @recipients
   end
 
-  # GET /recipients/1
   def show
     render json: @recipient
   end
 
-  # POST /recipients
   def create
     @recipient = Recipient.new(recipient_params)
 
@@ -24,7 +20,6 @@ class RecipientsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /recipients/1
   def update
     if @recipient.update(recipient_params)
       render json: @recipient
@@ -33,18 +28,11 @@ class RecipientsController < ApplicationController
     end
   end
 
-  # DELETE /recipients/1
-  def destroy
-    @recipient.destroy
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_recipient
       @recipient = Recipient.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def recipient_params
       params.fetch(:recipient, {})
     end

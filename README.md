@@ -10,7 +10,7 @@ Farewell Not was designed to allow users to send loved ones messages in the unfo
 
 ## Installation
 
-Clone the repository from Github (https://github.com/kmac303/phase-4-project)
+Clone the repository from Github (https://github.com/kmac303/farewell-not)
 Then run these commands to set up everything:
 - bundle install
 - rails db:create
@@ -21,6 +21,8 @@ Once set up, run these commands in separate terminal windows to run the applicat
 - npm start --prefix client: run the frontend on http://localhost:4000
 
 ## Usage
+
+Begin by creating a User account
 
 Navigate through the application by viewing different restaurants in the database or search by restaurant info, and view their respective reviews by clicking on an individual restaurant. At the top of each individual restaurant page is an aggregate review, factoring in all reviews for that restaurant and assigning it an average star rating.
 
