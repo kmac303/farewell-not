@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function Message() { 
     const { id } = useParams();
+    const history = useHistory();
     const [messageDetails, setMessageDetails] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
@@ -67,6 +68,22 @@ function Message() {
             .catch(error => console.error(error));
     };  
 
+    const handleDelete = () => {
+        fetch(`/messages/${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("Message deleted successfully");
+                history.push("/messages");
+            } else {
+                console.error("Error deleting message");
+            }
+        })
+        .catch(error => console.error(error));
+    };
+    
+
     if (!messageDetails) return <div>Not authorized to view this message.</div>;
 
     return (
@@ -115,6 +132,7 @@ function Message() {
                         ))}
                     </ul>
                     <button onClick={handleEditToggle}>Edit</button>
+                    <button onClick={handleDelete}>Delete</button>
                 </>
             )}
         </div>

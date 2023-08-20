@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :update]
+  before_action :set_message, only: [:show, :update, :destroy]
 
   def index
     if current_user
@@ -46,6 +46,15 @@ class MessagesController < ApplicationController
     end
   rescue => e
     render json: { error: e.message }, status: :internal_server_error
+  end
+
+  def destroy
+    if @message.user_id != current_user.id
+      render json: { error: 'Not authorized to delete this message' }, status: :forbidden
+    else
+      @message.destroy
+      render json: { message: 'Message deleted successfully' }, status: :ok
+    end
   end
 
   private

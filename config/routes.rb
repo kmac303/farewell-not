@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   resources :matches, only: [:index, :show, :create, :update, :destroy]
   resources :recipients, only: [:index, :show, :create, :update]
-  resources :messages, only: [:index, :show, :create, :update]
+  resources :messages
   resources :users, only: [:show, :create]
 
   # Leave this here to help deploy your app later!
