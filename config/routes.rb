@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   post '/start_scraper', to: 'scraper#start'
   
-  resources :matches, only: [:index, :show, :create, :update, :destroy]
+  resources :matches, only: [:index, :show, :create, :update]
   resources :recipients, only: [:index, :show, :create, :update]
   resources :messages
   resources :users, only: [:show, :create]

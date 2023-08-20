@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :update, :destroy, :index]
+  before_action :set_match, only: [:show, :update, :index]
 
   def index
     @matches = Match.includes(user: { messages: :recipients }).all
@@ -28,10 +28,6 @@ end
       render json: @match.errors, status: :unprocessable_entity
     end
   end
-
-  # def destroy
-  #   @match.destroy
-  # end
 
   private
     def set_match
