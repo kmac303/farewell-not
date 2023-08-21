@@ -27,6 +27,12 @@ function NewMessageForm() {
         setRecipients([...recipients, { name: "", email: "" }]);
     }
 
+    function submissionError() {
+        return (
+          window.confirm("Please make sure all sections are filled to create a message!")
+        );
+      }
+
     function handleSubmit(e) {
         e.preventDefault();
     
@@ -47,7 +53,7 @@ function NewMessageForm() {
             if (response.ok) {
                 return response.json();
             } else {
-                throw new Error("Network response was not ok");
+                submissionError();
             }
         })
         .then((data) => {
