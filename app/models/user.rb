@@ -2,7 +2,6 @@ class User < ApplicationRecord
     has_secure_password
     has_many :messages
     has_one :match
-    validates :password, presence: true
     validates :username, presence: true
     validates :username, uniqueness: true
     validates :first_name, presence: true
